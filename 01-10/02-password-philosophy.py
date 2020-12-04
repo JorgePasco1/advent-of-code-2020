@@ -65,10 +65,11 @@ def check_password_validity_new(password_string: str) -> bool:
 
 if __name__ == '__main__':
     with open('02-password-philosophy-input.txt', 'r') as puzzle_input:
-        print(
-            len([password for password in puzzle_input if check_password_validity(password)])
-        )
-    with open('02-password-philosophy-input.txt', 'r') as puzzle_input:
-        print(
-            len([password for password in puzzle_input if check_password_validity_new(password)])
-        )
+        passwords = puzzle_input.read().split('\n')
+
+    print(
+        len([password for password in passwords if check_password_validity(password)])
+    )
+    print(
+        len([password for password in passwords if check_password_validity_new(password)])
+    )
