@@ -112,12 +112,11 @@ Count the number of valid passports - those that have all required fields and va
 """
 import re
 
-VALUES_TO_HAVE = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
-VALUES_TO_HAVE_2 = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"]
-VALUES_TO_HAVE.sort(), VALUES_TO_HAVE_2.sort()
+VALUES_TO_HAVE = sorted(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
+VALUES_TO_HAVE_2 = sorted(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"])
 
 
-def height_validation(height):
+def height_validation(height: str) -> bool:
     match = re.match(r"(\d{2,3})(cm|in)", height)
 
     if not match:
@@ -148,8 +147,7 @@ def check_passport_validity(passport: str, strong_validate=False) -> bool:
             if key != 'cid' and not validations_dict[key](values[i]):
                 return False
 
-    keys.sort()
-    return keys == VALUES_TO_HAVE or keys == VALUES_TO_HAVE_2
+    return sorted(keys) == VALUES_TO_HAVE or sorted(keys) == VALUES_TO_HAVE_2
 
 
 if __name__ == '__main__':
